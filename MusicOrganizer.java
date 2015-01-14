@@ -56,7 +56,7 @@ public class MusicOrganizer
         if(indexValid(index)) {
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
-            
+            track.addPlayCount();
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
         }
     }
@@ -123,10 +123,10 @@ public class MusicOrganizer
      */
     public void playFirst()
     {
-       
+        Track track = tracks.get(0);
         if(tracks.size() > 0) {
             player.startPlaying(tracks.get(0).getFilename());
-            
+            track.addPlayCount();
         }
     }
     
