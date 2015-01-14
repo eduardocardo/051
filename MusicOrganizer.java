@@ -189,4 +189,13 @@ public class MusicOrganizer
             }
         }
     }
+    
+    /**
+     * Metodo que modifica el atributo language en un determinado track
+     */
+    public void setLanguageOfTrack(int index,String language)
+    {
+        Track track = tracks.get(index);
+        track.setLanguage(language);
+    }
 }
