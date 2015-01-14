@@ -15,6 +15,8 @@ public class Track
     private String filename;
     //almacena el numero de  veces que se ha reproducido una canción.
     private  int playCount;
+    //indica el idioma en el que esta la cancion
+    private String language;
     
     /**
      * Constructor for objects of class Track.
@@ -22,9 +24,9 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    public Track(String artist, String title, String filename)
+    public Track(String artist, String title, String filename,String language)
     {
-        setDetails(artist, title, filename);
+        setDetails(artist, title, filename,language);
         playCount = 0;
     }
     
@@ -36,7 +38,7 @@ public class Track
      */
     public Track(String filename)
     {
-        setDetails("unknown", "unknown", filename);
+        setDetails("unknown", "unknown", filename,"unknown");
     }
     
     /**
@@ -72,7 +74,7 @@ public class Track
      */
     public String getDetails()
     {
-        return artist + ": " + title + "  (file: " + filename + ")" + "Playcount : " + playCount;
+        return artist + ": " + title + "  (file: " + filename + ")" + " " + "Language : " + language + " "  + "Playcount : " + playCount;
     }
     
     /**
@@ -81,11 +83,12 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    private void setDetails(String artist, String title, String filename)
+    private void setDetails(String artist, String title, String filename,String language)
     {
         this.artist = artist;
         this.title = title;
         this.filename = filename;
+        this.language = language;
     }
     
     /**
@@ -102,5 +105,21 @@ public class Track
     public void addPlayCount()
     {
         playCount++;
+    }
+    
+    /**
+    * Metodo que devuelve el idioma en el que esta una cancion
+    */
+    public String getLanguage()
+    {
+        return language;
+    }
+     
+    /**
+    * Metodo que modifica el  atributo language
+    */
+    public void setLanguage(String language)
+    {
+        this.language = language;
     }
 }
