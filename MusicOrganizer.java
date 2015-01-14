@@ -170,4 +170,20 @@ public class MusicOrganizer
             addTrack(track);
         }
     }
+    
+    /**
+     * Metodo que muestre por pantalla la información de los tracks que contienen
+     * una cadena en el título de la canción.
+     */
+    public  void findInTitle(String tempTrack)
+    {
+        
+        for(Track track : tracks )
+        {
+            if(track.getTitle().contains(tempTrack))
+            {
+                System.out.println(track.getDetails());
+            }
+        }
+    }
 }
