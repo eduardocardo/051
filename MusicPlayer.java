@@ -18,6 +18,8 @@ public class MusicPlayer
 {
     // The current player. It might be null.
     private AdvancedPlayer player;
+    //indica si una cancion se esta reproduciendo en este momento
+    private boolean playing;
     
     /**
      * Constructor for objects of class MusicFilePlayer
@@ -25,6 +27,7 @@ public class MusicPlayer
     public MusicPlayer()
     {
         player = null;
+        playing = false;
     }
     
     /**
@@ -37,12 +40,14 @@ public class MusicPlayer
         try {
             setupPlayer(filename);
             player.play(500);
+            playing = true;
         }
         catch(JavaLayerException e) {
             reportProblem(filename);
         }
         finally {
             killPlayer();
+            playing = false;
         }
     }
     
@@ -55,17 +60,21 @@ public class MusicPlayer
     {
         try {
             setupPlayer(filename);
+            playing = true;
             Thread playerThread = new Thread() {
                 public void run()
                 {
                     try {
                         player.play(5000);
+                        
                     }
                     catch(JavaLayerException e) {
                         reportProblem(filename);
                     }
                     finally {
+                        
                         killPlayer();
+                        playing = false;
                     }
                 }
             };
@@ -78,7 +87,8 @@ public class MusicPlayer
     
     public void stop()
     {
-        killPlayer();
+         killPlayer();
+         playing = false;
     }
     
     /**
@@ -133,6 +143,7 @@ public class MusicPlayer
         synchronized(this) {
             if(player != null) {
                 player.stop();
+                
                 player = null;
             }
         }
@@ -146,5 +157,12 @@ public class MusicPlayer
     {
         System.out.println("There was a problem playing: " + filename);
     }
-
+    
+    /**
+     * Metodo que devuelve si una cancion se esta reproduciendo en este momento
+     */
+    public boolean isPlaying()
+    {
+        return playing;
+    }
 }
