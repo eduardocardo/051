@@ -241,5 +241,19 @@ public class MusicOrganizer
         }
     }
     
-   
+     /**
+     * Metodo que permite eliminar del organizador tracks que contengan un determinado artista usando un iterador
+     */
+    public void removeByArtist(String artist)
+    {
+        Iterator<Track> it = tracks.iterator();
+        while(it.hasNext())
+        {
+            Track track = it.next();
+            if(track.getArtist().contains(artist))
+            {
+                it.remove();
+            }
+        }
+    }
 }
