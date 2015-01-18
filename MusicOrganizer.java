@@ -306,4 +306,27 @@ public class MusicOrganizer
             
         }
     }
+    
+    /**
+     * Metodo que permite seleccionar aleatoriamente de la copia una cancion,reproducirla y luego eliminarla
+     */
+    public void playShuffle2()
+    {
+        //Se hace la copia del ArrayList
+        ArrayList<Track> copia = new ArrayList<>();
+        copia = (ArrayList)tracks.clone();
+        //Se selecciona aleatoriamente una cancion para reproducir
+        Collections.shuffle(copia);
+        Iterator<Track> it = copia.iterator();
+        while(it.hasNext())
+        {
+            Track track = it.next();
+            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+            player.playSample(track.getFilename());
+            track.addPlayCount();
+            //se elimina la cancion
+            it.remove();
+        }
+        
+    }
 }
